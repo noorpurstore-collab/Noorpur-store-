@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noorpur Store - Home Essentials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF4D6D',
+                        secondary: '#C9184A'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .cart-scroll::-webkit-scrollbar { width: 5px; }
+        .cart-scroll::-webkit-scrollbar-thumb { background: #FF4D6D; border-radius: 10px; }
+        .hide { display: none !important; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .animate-fade { animation: fadeIn 0.3s ease-in-out; }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans antialiased">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="bg-primary p-2 rounded-lg">
+                    <i class="fa-solid fa-house-laptop text-white text-xl"></i>
+                </div>
+                <span class="text-2xl font-black text-gray-800 tracking-tighter">NOORPUR <span class="text-primary">STORE</span></span>
+            </div>
+            <button onclick="toggleCart()" class="relative p-2 bg-gray-100 rounded-full hover:bg-primary hover:text-white transition-all">
+                <i class="fa-solid fa-basket-shopping text-xl"></i>
+                <span id="cart-count" class="absolute -top-1 -right-1 bg-black text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Product Showcase -->
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 flex flex-col lg:flex-row">
+            
+            <!-- Gallery Section -->
+            <div class="lg:w-1/2 p-6 bg-white">
+                <div class="relative group">
+                    <img id="main-img" src="https://i.postimg.cc/254zNNBs/1774593854050.jpg" alt="[Juicer Blender ki tasveer]" class="w-full aspect-square object-contain rounded-2xl transition-transform duration-500 hover:scale-105">
+                    <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full shadow-sm text-xs font-bold text-primary italic">
+                        #1 Best Seller
+                    </div>
+                </div>
+                <div class="flex space-x-3 mt-6 overflow-x-auto py-2">
+                    <img onclick="updateMainImg('https://i.postimg.cc/254zNNBs/1774593854050.jpg')" src="https://i.postimg.cc/254zNNBs/1774593854050.jpg" class="w-20 h-20 object-cover rounded-xl cursor-pointer border-2 border-primary">
+                    <img onclick="updateMainImg('https://i.postimg.cc/7ZNkKnvB/1774593854194.jpg')" src="https://i.postimg.cc/7ZNkKnvB/1774593854194.jpg" class="w-20 h-20 object-cover rounded-xl cursor-pointer border-2 border-transparent hover:border-primary">
+                    <img onclick="updateMainImg('https://i.postimg.cc/G24nh04g/1774593854354.jpg')" src="https://i.postimg.cc/G24nh04g/1774593854354.jpg" class="w-20 h-20 object-cover rounded-xl cursor-pointer border-2 border-transparent hover:border-primary">
+                    <img onclick="updateMainImg('https://i.postimg.cc/pddgqNJv/1774593854472.jpg')" src="https://i.postimg.cc/pddgqNJv/1774593854472.jpg" class="w-20 h-20 object-cover rounded-xl cursor-pointer border-2 border-transparent hover:border-primary">
+                    <img onclick="updateMainImg('https://i.postimg.cc/d1bpshPZ/1774593854580.jpg')" src="https://i.postimg.cc/d1bpshPZ/1774593854580.jpg" class="w-20 h-20 object-cover rounded-xl cursor-pointer border-2 border-transparent hover:border-primary">
+                </div>
+            </div>
+
+            <!-- Content Section -->
+            <div class="lg:w-1/2 p-8 lg:p-12 flex flex-col">
+                <nav class="flex text-gray-400 text-xs mb-4 space-x-2">
+                    <span>Home</span><span>/</span><span>Kitchen</span><span>/</span><span class="text-primary font-bold">Blenders</span>
+                </nav>
+                <h1 class="text-3xl md:text-4xl font-black text-gray-900 leading-tight mb-4 uppercase">Portable Electric Rechargeable Juicer</h1>
+                
+                <div class="flex items-center space-x-4 mb-6">
+                    <div class="flex items-center bg-yellow-400 px-2 py-1 rounded text-white text-sm font-bold">
+                        4.8 <i class="fa-solid fa-star ml-1 text-[10px]"></i>
+                    </div>
+                    <span class="text-gray-400 text-sm">2,450+ Orders this month</span>
+                </div>
+
+                <div class="flex items-baseline space-x-3 mb-8">
+                    <span class="text-4xl font-black text-primary italic">Rs. 2,099</span>
+                    <span class="text-xl text-gray-300 line-through">Rs. 3,500</span>
+                    <span class="bg-green-100 text-green-600 text-[10px] font-bold px-2 py-1 rounded">FREE DELIVERY</span>
+                </div>
+
+                <div class="space-y-4 mb-10">
+                    <div class="flex items-center text-gray-600 text-sm">
+                        <div class="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-3">
+                            <i class="fa-solid fa-truck-fast text-xs"></i>
+                        </div>
+                        Free Delivery All Over Pakistan
+                    </div>
+                    <div class="flex items-center text-gray-600 text-sm">
+                        <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mr-3">
+                            <i class="fa-solid fa-battery-three-quarters text-xs"></i>
+                        </div>
+                        USB Rechargeable (Long Battery Life)
+                    </div>
+                    <div class="flex items-center text-gray-600 text-sm">
+                        <div class="w-8 h-8 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center mr-3">
+                            <i class="fa-solid fa-shield-heart text-xs"></i>
+                        </div>
+                        Food Grade PC Material - Safe & Durable
+                    </div>
+                </div>
+
+                <!-- Action -->
+                <div class="mt-auto pt-6 border-t border-gray-100">
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <div class="flex items-center border-2 border-gray-100 rounded-2xl p-1 bg-gray-50">
+                            <button onclick="qty(-1)" class="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-primary"><i class="fa-solid fa-minus"></i></button>
+                            <input type="number" id="q-val" value="1" readonly class="w-12 text-center bg-transparent font-bold text-gray-800">
+                            <button onclick="qty(1)" class="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-primary"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                        <button onclick="buyNow()" class="flex-1 bg-primary text-white font-black py-4 rounded-2xl shadow-lg shadow-primary/30 hover:bg-secondary transition-all transform active:scale-95 uppercase tracking-widest text-sm">
+                            <i class="fa-solid fa-cart-shopping mr-2"></i> Add to Basket
+                        </button>
+                    </div>
+                    <p class="text-[10px] text-center text-gray-400 mt-4 uppercase tracking-tighter">
+                        <i class="fa-solid fa-truck-fast mr-1"></i> Cash on Delivery & Free Shipping
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Checkout Modal -->
+    <div id="cart-modal" class="fixed inset-0 z-[60] hide flex justify-end">
+        <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" onclick="toggleCart()"></div>
+        <div class="relative w-full max-w-md bg-white h-full shadow-2xl flex flex-col animate-fade">
+            <div class="p-6 border-b flex justify-between items-center">
+                <h2 class="text-xl font-black italic">CHECKOUT <span class="text-primary">ORDER</span></h2>
+                <button onclick="toggleCart()" class="text-2xl text-gray-400 hover:text-primary">&times;</button>
+            </div>
+            
+            <div id="cart-content" class="flex-1 overflow-y-auto cart-scroll p-6">
+                <div id="order-form-container">
+                    <div class="bg-gray-50 p-4 rounded-2xl mb-6 flex items-center">
+                        <img src="https://i.postimg.cc/254zNNBs/1774593854050.jpg" alt="[Blender Checkout tasveer]" class="w-16 h-16 rounded-lg object-cover mr-4">
+                        <div class="flex-1">
+                            <p class="font-bold text-sm" id="p-name">Portable Juicer Blender</p>
+                            <p class="text-primary font-black text-sm" id="p-price">Rs. 2,099 x 1</p>
+                        </div>
+                    </div>
+
+                    <form onsubmit="placeOrder(event)" class="space-y-4">
+                        <div>
+                            <label class="text-[10px] font-bold text-gray-400 uppercase">Customer Name</label>
+                            <input type="text" id="name" required class="w-full bg-gray-50 border-none rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary outline-none">
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-bold text-gray-400 uppercase">Phone Number (WhatsApp)</label>
+                            <input type="tel" id="phone" required placeholder="03XXXXXXXXX" class="w-full bg-gray-50 border-none rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary outline-none">
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-bold text-gray-400 uppercase">Email Address</label>
+                            <input type="email" id="email" required placeholder="customer@email.com" class="w-full bg-gray-50 border-none rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary outline-none">
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-bold text-gray-400 uppercase">Full Delivery Address</label>
+                            <textarea id="address" required rows="3" class="w-full bg-gray-50 border-none rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary outline-none"></textarea>
+                        </div>
+                        
+                        <div class="bg-primary/5 p-4 rounded-2xl border border-primary/10">
+                            <div class="flex justify-between text-sm mb-2">
+                                <span class="text-gray-500">Subtotal</span>
+                                <span class="font-bold" id="bill-sub">Rs. 2,099</span>
+                            </div>
+                            <div class="flex justify-between text-sm mb-2">
+                                <span class="text-gray-500">Shipping</span>
+                                <span class="text-green-600 font-bold uppercase">Free</span>
+                            </div>
+                            <div class="flex justify-between text-lg font-black pt-2 border-t border-primary/20">
+                                <span>TOTAL</span>
+                                <span class="text-primary" id="bill-total">Rs. 2,099</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" id="submit-btn" class="w-full bg-black text-white py-4 rounded-2xl font-bold uppercase tracking-widest hover:bg-primary transition-all">
+                            Complete Order (COD)
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success" class="fixed inset-0 z-[100] hide flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
+        <div class="bg-white p-8 rounded-3xl max-w-sm w-full text-center">
+            <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fa-solid fa-check text-4xl"></i>
+            </div>
+            <h2 class="text-2xl font-black mb-2">ORDER PLACED!</h2>
+            <p class="text-gray-500 text-sm mb-8">Shukriya, <span id="user-name" class="font-bold">Customer</span>! Aap ka order confirm ho gaya hai aur details email par bhej di gayi hain.</p>
+            <button onclick="location.reload()" class="w-full bg-black text-white py-3 rounded-xl font-bold">Done</button>
+        </div>
+    </div>
+
+    <script>
+        // EmailJS Config
+        const EMAILJS_KEY = "kzmM0KWO1n4plnqJm"; 
+        const SERVICE_ID = "service_iw3bi57"; 
+        const ADMIN_TEMPLATE_ID = "template_xxwk98a"; 
+        const CUSTOMER_TEMPLATE_ID = "template_i8f2nfi"; 
+
+        emailjs.init(EMAILJS_KEY);
+
+        let currentQty = 1;
+        const pricePerUnit = 2099; // Updated Price
+
+        function updateMainImg(src) {
+            document.getElementById('main-img').src = src;
+            const thumbs = document.querySelectorAll('.w-20');
+            thumbs.forEach(img => {
+                if (img.src === src) {
+                    img.classList.replace('border-transparent', 'border-primary');
+                } else {
+                    img.classList.replace('border-primary', 'border-transparent');
+                }
+            });
+        }
+
+        function qty(n) {
+            currentQty = Math.max(1, currentQty + n);
+            document.getElementById('q-val').value = currentQty;
+        }
+
+        function toggleCart() {
+            document.getElementById('cart-modal').classList.toggle('hide');
+            updateBill();
+        }
+
+        function buyNow() {
+            document.getElementById('cart-count').innerText = currentQty;
+            toggleCart();
+        }
+
+        function updateBill() {
+            const sub = currentQty * pricePerUnit;
+            const total = sub; // No shipping charges
+            document.getElementById('p-price').innerText = `Rs. ${pricePerUnit.toLocaleString()} x ${currentQty}`;
+            document.getElementById('bill-sub').innerText = `Rs. ${sub.toLocaleString()}`;
+            document.getElementById('bill-total').innerText = `Rs. ${total.toLocaleString()}`;
+        }
+
+        async function placeOrder(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            btn.innerText = "SENDING...";
+            btn.disabled = true;
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const total = currentQty * pricePerUnit;
+
+            const params = {
+                to_name: name,
+                cust_email: email,
+                cust_phone: document.getElementById('phone').value,
+                cust_address: document.getElementById('address').value,
+                order_items: `${currentQty}x Portable Juicer Blender`,
+                total_bill: `Rs. ${total.toLocaleString()} (Free Delivery)`
+            };
+
+            try {
+                await emailjs.send(SERVICE_ID, ADMIN_TEMPLATE_ID, params);
+                await emailjs.send(SERVICE_ID, CUSTOMER_TEMPLATE_ID, params);
+
+                document.getElementById('user-name').innerText = name;
+                document.getElementById('success').classList.remove('hide');
+            } catch (err) {
+                alert("Koi masla aa gaya hai. Barae meharbani WhatsApp par order karein.");
+                console.error(err);
+            } finally {
+                btn.innerText = "Complete Order (COD)";
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
+
+      
