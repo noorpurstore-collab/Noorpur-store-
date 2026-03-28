@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noorpur Store - Home Essentials</title>
+    <title>Noorpur Store | HP Premium Backpack</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
@@ -13,216 +13,206 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#FF4D6D',
-                        secondary: '#C9184A'
+                        primary: '#1a1a1a',
+                        accent: '#FFD700',
+                        danger: '#e63946'
                     }
                 }
             }
         }
     </script>
     <style>
-        .cart-scroll::-webkit-scrollbar { width: 5px; }
-        .cart-scroll::-webkit-scrollbar-thumb { background: #FF4D6D; border-radius: 10px; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
         .hide { display: none !important; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .animate-fade { animation: fadeIn 0.3s ease-in-out; }
+        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .image-slider { scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; display: flex; overflow-x: auto; }
+        .image-slider::-webkit-scrollbar { display: none; }
+        .image-item { scroll-snap-align: center; flex: 0 0 100%; width: 100%; }
+        .active-thumb { border-color: #1a1a1a !important; transform: scale(1.05); }
+        @keyframes slideInUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .animate-up { animation: slideInUp 0.6s ease-out forwards; }
     </style>
 </head>
-<body class="bg-gray-50 font-sans antialiased">
+<body class="bg-gray-100 text-gray-900 overflow-x-hidden">
 
-    <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <div class="bg-primary p-2 rounded-lg">
-                    <i class="fa-solid fa-house-laptop text-white text-xl"></i>
+    <!-- Top Banner -->
+    <div class="bg-primary text-white text-[10px] font-bold py-2 text-center uppercase tracking-[0.2em]">
+        <i class="fa-solid fa-truck-fast mr-2"></i> Only For Pakistan - Free Shipping Nationwide
+    </div>
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 glass px-4 py-3 shadow-sm">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="bg-primary w-10 h-10 rounded-xl flex items-center justify-center text-white shadow-lg">
+                    <i class="fa-solid fa-briefcase"></i>
                 </div>
-                <span class="text-2xl font-black text-gray-800 tracking-tighter">NOORPUR <span class="text-primary">STORE</span></span>
+                <div>
+                    <h1 class="text-lg font-extrabold leading-none tracking-tighter uppercase">NOORPUR<br><span class="text-gray-500">STORE</span></h1>
+                </div>
             </div>
-            <button onclick="toggleCart()" class="relative p-2 bg-gray-100 rounded-full hover:bg-primary hover:text-white transition-all">
-                <i class="fa-solid fa-basket-shopping text-xl"></i>
-                <span id="cart-count" class="absolute -top-1 -right-1 bg-black text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white">0</span>
+            <button onclick="toggleCart()" class="relative bg-white w-12 h-12 rounded-full flex items-center justify-center shadow-md border border-gray-100">
+                <i class="fa-solid fa-cart-shopping text-primary"></i>
+                <span id="cart-count" class="absolute -top-1 -right-1 bg-danger text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">0</span>
             </button>
         </div>
-    </header>
+    </nav>
 
-    <!-- Product Showcase -->
+    <!-- Product Section -->
     <main class="max-w-6xl mx-auto px-4 py-8">
-        <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 flex flex-col lg:flex-row">
+        <div class="grid lg:grid-cols-2 gap-10">
             
-            <!-- Gallery Section -->
-            <div class="lg:w-1/2 p-6 bg-white">
-                <div class="relative group">
-                    <img id="main-img" src="https://i.postimg.cc/254zNNBs/1774593854050.jpg" alt="[Juicer Blender ki tasveer]" class="w-full aspect-square object-contain rounded-2xl transition-transform duration-500 hover:scale-105">
-                    <div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full shadow-sm text-xs font-bold text-primary italic">
-                        #1 Best Seller
+            <!-- Left: Gallery -->
+            <div class="space-y-4 animate-up">
+                <div class="relative bg-white rounded-3xl shadow-2xl overflow-hidden group">
+                    <div id="slider" class="image-slider h-[400px] md:h-[550px]">
+                        <!-- New 3 Images only -->
+                        <div class="image-item"><img src="https://i.postimg.cc/SRkWWDVz/1774700096811-2.jpg" class="w-full h-full object-contain p-4" alt="[Backpack Bag Image 1]"></div>
+                        <div class="image-item"><img src="https://i.postimg.cc/D0wT4KV8/1774700096517.jpg" class="w-full h-full object-contain p-4" alt="[Backpack Bag Image 2]"></div>
+                        <div class="image-item"><img src="https://i.postimg.cc/GtmCT109/1774700096732.jpg" class="w-full h-full object-contain p-4" alt="[Backpack Bag Image 3]"></div>
                     </div>
+                    
+                    <!-- Slider Arrows -->
+                    <button onclick="slide(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 w-10 h-10 rounded-full shadow-lg flex items-center justify-center hover:bg-white transition-all"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button onclick="slide(1)" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 w-10 h-10 rounded-full shadow-lg flex items-center justify-center hover:bg-white transition-all"><i class="fa-solid fa-chevron-right"></i></button>
                 </div>
-                <div class="flex space-x-3 mt-6 overflow-x-auto py-2">
-                    <img onclick="updateMainImg('https://i.postimg.cc/254zNNBs/1774593854050.jpg')" src="https://i.postimg.cc/254zNNBs/1774593854050.jpg" class="w-20 h-20 object-cover rounded-xl cursor-pointer border-2 border-primary">
-                    <img onclick="updateMainImg('https://i.postimg.cc/7ZNkKnvB/1774593854194.jpg')" src="https://i.postimg.cc/7ZNkKnvB/1774593854194.jpg" class="w-20 h-20 object-cover rounded-xl cursor-pointer border-2 border-transparent hover:border-primary">
-                    <img onclick="updateMainImg('https://i.postimg.cc/G24nh04g/1774593854354.jpg')" src="https://i.postimg.cc/G24nh04g/1774593854354.jpg" class="w-20 h-20 object-cover rounded-xl cursor-pointer border-2 border-transparent hover:border-primary">
-                    <img onclick="updateMainImg('https://i.postimg.cc/pddgqNJv/1774593854472.jpg')" src="https://i.postimg.cc/pddgqNJv/1774593854472.jpg" class="w-20 h-20 object-cover rounded-xl cursor-pointer border-2 border-transparent hover:border-primary">
-                    <img onclick="updateMainImg('https://i.postimg.cc/d1bpshPZ/1774593854580.jpg')" src="https://i.postimg.cc/d1bpshPZ/1774593854580.jpg" class="w-20 h-20 object-cover rounded-xl cursor-pointer border-2 border-transparent hover:border-primary">
+
+                <!-- Thumbnails -->
+                <div class="flex gap-3 overflow-x-auto pb-2 px-1">
+                    <img onclick="scrollToImg(0)" src="https://i.postimg.cc/SRkWWDVz/1774700096811-2.jpg" class="thumb w-16 h-16 rounded-xl object-cover border-2 border-transparent cursor-pointer active-thumb">
+                    <img onclick="scrollToImg(1)" src="https://i.postimg.cc/D0wT4KV8/1774700096517.jpg" class="thumb w-16 h-16 rounded-xl object-cover border-2 border-transparent cursor-pointer">
+                    <img onclick="scrollToImg(2)" src="https://i.postimg.cc/GtmCT109/1774700096732.jpg" class="thumb w-16 h-16 rounded-xl object-cover border-2 border-transparent cursor-pointer">
                 </div>
             </div>
 
-            <!-- Content Section -->
-            <div class="lg:w-1/2 p-8 lg:p-12 flex flex-col">
-                <nav class="flex text-gray-400 text-xs mb-4 space-x-2">
-                    <span>Home</span><span>/</span><span>Kitchen</span><span>/</span><span class="text-primary font-bold">Blenders</span>
-                </nav>
-                <h1 class="text-3xl md:text-4xl font-black text-gray-900 leading-tight mb-4 uppercase">Portable Electric Rechargeable Juicer</h1>
-                
-                <div class="flex items-center space-x-4 mb-6">
-                    <div class="flex items-center bg-yellow-400 px-2 py-1 rounded text-white text-sm font-bold">
-                        4.8 <i class="fa-solid fa-star ml-1 text-[10px]"></i>
+            <!-- Right: Info -->
+            <div class="flex flex-col animate-up" style="animation-delay: 0.2s;">
+                <div class="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 h-full flex flex-col">
+                    <div class="flex items-center gap-2 mb-4">
+                        <span class="bg-danger/10 text-danger text-[10px] font-black px-2 py-1 rounded uppercase tracking-tighter italic">Flash Sale</span>
+                        <span class="text-gray-400 text-xs">• Pakistan Only</span>
                     </div>
-                    <span class="text-gray-400 text-sm">2,450+ Orders this month</span>
-                </div>
+                    
+                    <h2 class="text-3xl font-extrabold tracking-tight mb-2 leading-tight uppercase">HP Laptop Backpack Black<br><span class="text-gray-400">Premium Polyester</span></h2>
+                    
+                    <div class="flex items-center gap-4 my-6 p-4 bg-gray-50 rounded-2xl border border-dashed border-gray-200">
+                        <div>
+                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Special Price</p>
+                            <p class="text-4xl font-black text-primary italic">Rs. 1,000</p>
+                        </div>
+                        <div class="border-l border-gray-200 pl-4">
+                            <p class="text-lg text-gray-300 line-through">Rs. 2,000</p>
+                            <p class="text-green-600 font-bold text-xs uppercase">50% Off & Free Delivery</p>
+                        </div>
+                    </div>
 
-                <div class="flex items-baseline space-x-3 mb-8">
-                    <span class="text-4xl font-black text-primary italic">Rs. 2,099</span>
-                    <span class="text-xl text-gray-300 line-through">Rs. 3,500</span>
-                    <span class="bg-green-100 text-green-600 text-[10px] font-bold px-2 py-1 rounded">FREE DELIVERY</span>
-                </div>
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-primary/5 rounded-full flex items-center justify-center shrink-0 text-primary"><i class="fa-solid fa-water"></i></div>
+                            <div>
+                                <p class="text-sm font-bold">Waterproof Fabric</p>
+                                <p class="text-xs text-gray-500">Apka saman barish se mehfooz.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 bg-primary/5 rounded-full flex items-center justify-center shrink-0 text-primary"><i class="fa-solid fa-feather"></i></div>
+                            <div>
+                                <p class="text-sm font-bold">Halka aur Mazboot</p>
+                                <p class="text-xs text-gray-500">Daily university aur office ke liye best.</p>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="space-y-4 mb-10">
-                    <div class="flex items-center text-gray-600 text-sm">
-                        <div class="w-8 h-8 rounded-full bg-green-100 text-green-600 flex items-center justify-center mr-3">
-                            <i class="fa-solid fa-truck-fast text-xs"></i>
+                    <div class="mt-auto pt-6 border-t border-gray-100 space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="flex items-center bg-gray-100 rounded-2xl p-1 w-32 border border-gray-200">
+                                <button onclick="qty(-1)" class="w-10 h-10 flex items-center justify-center"><i class="fa-solid fa-minus text-xs"></i></button>
+                                <input id="q-val" type="number" readonly value="1" class="w-full text-center bg-transparent font-bold">
+                                <button onclick="qty(1)" class="w-10 h-10 flex items-center justify-center"><i class="fa-solid fa-plus text-xs"></i></button>
+                            </div>
+                            <button onclick="buyNow()" class="flex-1 bg-primary text-white py-4 rounded-2xl font-black text-sm uppercase tracking-widest shadow-xl hover:scale-[1.02] active:scale-95 transition-all">
+                                <i class="fa-solid fa-bolt mr-2"></i> Order Now
+                            </button>
                         </div>
-                        Free Delivery All Over Pakistan
+                        <p class="text-center text-[10px] font-bold text-gray-400 uppercase tracking-tighter italic">Cash on Delivery available all over Pakistan</p>
                     </div>
-                    <div class="flex items-center text-gray-600 text-sm">
-                        <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mr-3">
-                            <i class="fa-solid fa-battery-three-quarters text-xs"></i>
-                        </div>
-                        USB Rechargeable (Long Battery Life)
-                    </div>
-                    <div class="flex items-center text-gray-600 text-sm">
-                        <div class="w-8 h-8 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center mr-3">
-                            <i class="fa-solid fa-shield-heart text-xs"></i>
-                        </div>
-                        Food Grade PC Material - Safe & Durable
-                    </div>
-                </div>
-
-                <!-- Action -->
-                <div class="mt-auto pt-6 border-t border-gray-100">
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <div class="flex items-center border-2 border-gray-100 rounded-2xl p-1 bg-gray-50">
-                            <button onclick="qty(-1)" class="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-primary"><i class="fa-solid fa-minus"></i></button>
-                            <input type="number" id="q-val" value="1" readonly class="w-12 text-center bg-transparent font-bold text-gray-800">
-                            <button onclick="qty(1)" class="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-primary"><i class="fa-solid fa-plus"></i></button>
-                        </div>
-                        <button onclick="buyNow()" class="flex-1 bg-primary text-white font-black py-4 rounded-2xl shadow-lg shadow-primary/30 hover:bg-secondary transition-all transform active:scale-95 uppercase tracking-widest text-sm">
-                            <i class="fa-solid fa-cart-shopping mr-2"></i> Add to Basket
-                        </button>
-                    </div>
-                    <p class="text-[10px] text-center text-gray-400 mt-4 uppercase tracking-tighter">
-                        <i class="fa-solid fa-truck-fast mr-1"></i> Cash on Delivery & Free Shipping
-                    </p>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Checkout Modal -->
-    <div id="cart-modal" class="fixed inset-0 z-[60] hide flex justify-end">
+    <!-- Checkout Slide-over -->
+    <div id="cart-modal" class="fixed inset-0 z-[100] hide">
         <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" onclick="toggleCart()"></div>
-        <div class="relative w-full max-w-md bg-white h-full shadow-2xl flex flex-col animate-fade">
+        <div class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl flex flex-col animate-fade">
             <div class="p-6 border-b flex justify-between items-center">
-                <h2 class="text-xl font-black italic">CHECKOUT <span class="text-primary">ORDER</span></h2>
-                <button onclick="toggleCart()" class="text-2xl text-gray-400 hover:text-primary">&times;</button>
+                <h3 class="font-extrabold text-xl tracking-tighter uppercase">ORDER DETAILS</h3>
+                <button onclick="toggleCart()" class="text-2xl">&times;</button>
             </div>
-            
-            <div id="cart-content" class="flex-1 overflow-y-auto cart-scroll p-6">
-                <div id="order-form-container">
-                    <div class="bg-gray-50 p-4 rounded-2xl mb-6 flex items-center">
-                        <img src="https://i.postimg.cc/254zNNBs/1774593854050.jpg" alt="[Blender Checkout tasveer]" class="w-16 h-16 rounded-lg object-cover mr-4">
-                        <div class="flex-1">
-                            <p class="font-bold text-sm" id="p-name">Portable Juicer Blender</p>
-                            <p class="text-primary font-black text-sm" id="p-price">Rs. 2,099 x 1</p>
+            <div class="flex-1 overflow-y-auto p-6 space-y-6">
+                <div class="flex gap-4 bg-gray-50 p-4 rounded-3xl border border-gray-100">
+                    <img src="https://i.postimg.cc/SRkWWDVz/1774700096811-2.jpg" class="w-20 h-20 rounded-2xl object-cover bg-white">
+                    <div>
+                        <h4 class="font-bold text-sm">HP Laptop Backpack (Black)</h4>
+                        <p class="text-primary font-black mt-1" id="p-price">Rs. 1,000</p>
+                        <p class="text-[10px] text-gray-400 uppercase font-bold" id="p-qty-label">Qty: 1</p>
+                    </div>
+                </div>
+                <form onsubmit="placeOrder(event)" class="space-y-4">
+                    <input id="name" type="text" placeholder="Apka Naam" required class="w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-4 outline-none focus:border-primary">
+                    <input id="phone" type="tel" placeholder="WhatsApp Number (03XXXXXXXXX)" required class="w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-4 outline-none focus:border-primary">
+                    <textarea id="address" placeholder="Mukammal Delivery Address" required rows="3" class="w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-4 outline-none focus:border-primary"></textarea>
+                    
+                    <div class="bg-gray-900 text-white p-6 rounded-3xl mt-6">
+                        <div class="flex justify-between text-xs opacity-60 mb-2"><span>Subtotal</span><span id="bill-sub">Rs. 1,000</span></div>
+                        <div class="flex justify-between text-xs opacity-60 mb-4"><span>Shipping (Pakistan Only)</span><span class="text-green-400">FREE</span></div>
+                        <div class="flex justify-between font-black text-xl pt-4 border-t border-white/10 italic">
+                            <span>TOTAL</span><span id="bill-total" class="text-accent tracking-widest">Rs. 1,000</span>
                         </div>
                     </div>
-
-                    <form onsubmit="placeOrder(event)" class="space-y-4">
-                        <div>
-                            <label class="text-[10px] font-bold text-gray-400 uppercase">Customer Name</label>
-                            <input type="text" id="name" required class="w-full bg-gray-50 border-none rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary outline-none">
-                        </div>
-                        <div>
-                            <label class="text-[10px] font-bold text-gray-400 uppercase">Phone Number (WhatsApp)</label>
-                            <input type="tel" id="phone" required placeholder="03XXXXXXXXX" class="w-full bg-gray-50 border-none rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary outline-none">
-                        </div>
-                        <div>
-                            <label class="text-[10px] font-bold text-gray-400 uppercase">Email Address</label>
-                            <input type="email" id="email" required placeholder="customer@email.com" class="w-full bg-gray-50 border-none rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary outline-none">
-                        </div>
-                        <div>
-                            <label class="text-[10px] font-bold text-gray-400 uppercase">Full Delivery Address</label>
-                            <textarea id="address" required rows="3" class="w-full bg-gray-50 border-none rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary outline-none"></textarea>
-                        </div>
-                        
-                        <div class="bg-primary/5 p-4 rounded-2xl border border-primary/10">
-                            <div class="flex justify-between text-sm mb-2">
-                                <span class="text-gray-500">Subtotal</span>
-                                <span class="font-bold" id="bill-sub">Rs. 2,099</span>
-                            </div>
-                            <div class="flex justify-between text-sm mb-2">
-                                <span class="text-gray-500">Shipping</span>
-                                <span class="text-green-600 font-bold uppercase">Free</span>
-                            </div>
-                            <div class="flex justify-between text-lg font-black pt-2 border-t border-primary/20">
-                                <span>TOTAL</span>
-                                <span class="text-primary" id="bill-total">Rs. 2,099</span>
-                            </div>
-                        </div>
-
-                        <button type="submit" id="submit-btn" class="w-full bg-black text-white py-4 rounded-2xl font-bold uppercase tracking-widest hover:bg-primary transition-all">
-                            Complete Order (COD)
-                        </button>
-                    </form>
-                </div>
+                    <button type="submit" id="submit-btn" class="w-full bg-primary text-white py-5 rounded-3xl font-black uppercase tracking-widest hover:scale-[1.02] active:scale-95 transition-all">Confirm Order</button>
+                </form>
             </div>
         </div>
     </div>
 
     <!-- Success Modal -->
-    <div id="success" class="fixed inset-0 z-[100] hide flex items-center justify-center p-4 bg-black/60 backdrop-blur-md">
-        <div class="bg-white p-8 rounded-3xl max-w-sm w-full text-center">
-            <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                <i class="fa-solid fa-check text-4xl"></i>
+    <div id="success" class="fixed inset-0 z-[200] hide flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+        <div class="bg-white p-10 rounded-[2.5rem] max-w-sm w-full text-center animate-up shadow-2xl">
+            <div class="w-24 h-24 bg-green-50 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fa-solid fa-check-double text-5xl"></i>
             </div>
-            <h2 class="text-2xl font-black mb-2">ORDER PLACED!</h2>
-            <p class="text-gray-500 text-sm mb-8">Shukriya, <span id="user-name" class="font-bold">Customer</span>! Aap ka order confirm ho gaya hai aur details email par bhej di gayi hain.</p>
-            <button onclick="location.reload()" class="w-full bg-black text-white py-3 rounded-xl font-bold">Done</button>
+            <h3 class="text-2xl font-black mb-2 uppercase tracking-tighter italic">ORDER PLACED!</h3>
+            <p class="text-gray-500 text-sm mb-10">Shukriya <span id="user-name" class="font-bold text-primary">Customer</span>! Aapka order mil gaya hai. Jald rabta karenge.</p>
+            <button onclick="location.reload()" class="w-full bg-primary text-white py-4 rounded-2xl font-bold uppercase">Done</button>
         </div>
     </div>
 
     <script>
-        // EmailJS Config
         const EMAILJS_KEY = "kzmM0KWO1n4plnqJm"; 
         const SERVICE_ID = "service_iw3bi57"; 
         const ADMIN_TEMPLATE_ID = "template_xxwk98a"; 
-        const CUSTOMER_TEMPLATE_ID = "template_i8f2nfi"; 
-
+        
         emailjs.init(EMAILJS_KEY);
 
         let currentQty = 1;
-        const pricePerUnit = 2099; // Updated Price
+        const pricePerUnit = 1000;
+        const slider = document.getElementById('slider');
 
-        function updateMainImg(src) {
-            document.getElementById('main-img').src = src;
-            const thumbs = document.querySelectorAll('.w-20');
-            thumbs.forEach(img => {
-                if (img.src === src) {
-                    img.classList.replace('border-transparent', 'border-primary');
-                } else {
-                    img.classList.replace('border-primary', 'border-transparent');
-                }
+        function slide(dir) {
+            slider.scrollBy({ left: dir * slider.clientWidth, behavior: 'smooth' });
+        }
+
+        slider.addEventListener('scroll', () => {
+            const index = Math.round(slider.scrollLeft / slider.clientWidth);
+            document.querySelectorAll('.thumb').forEach((t, i) => {
+                i === index ? t.classList.add('active-thumb') : t.classList.remove('active-thumb');
             });
+        });
+
+        function scrollToImg(index) {
+            slider.scrollTo({ left: index * slider.clientWidth, behavior: 'smooth' });
         }
 
         function qty(n) {
@@ -242,47 +232,35 @@
 
         function updateBill() {
             const sub = currentQty * pricePerUnit;
-            const total = sub; // No shipping charges
-            document.getElementById('p-price').innerText = `Rs. ${pricePerUnit.toLocaleString()} x ${currentQty}`;
+            document.getElementById('p-qty-label').innerText = `Qty: ${currentQty}`;
             document.getElementById('bill-sub').innerText = `Rs. ${sub.toLocaleString()}`;
-            document.getElementById('bill-total').innerText = `Rs. ${total.toLocaleString()}`;
+            document.getElementById('bill-total').innerText = `Rs. ${sub.toLocaleString()}`;
         }
 
         async function placeOrder(e) {
             e.preventDefault();
             const btn = document.getElementById('submit-btn');
-            btn.innerText = "SENDING...";
-            btn.disabled = true;
-
+            btn.innerText = "Processing..."; btn.disabled = true;
             const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const total = currentQty * pricePerUnit;
-
             const params = {
                 to_name: name,
-                cust_email: email,
+                cust_email: "no-email@store.pk",
                 cust_phone: document.getElementById('phone').value,
                 cust_address: document.getElementById('address').value,
-                order_items: `${currentQty}x Portable Juicer Blender`,
-                total_bill: `Rs. ${total.toLocaleString()} (Free Delivery)`
+                order_items: `${currentQty}x HP Laptop Backpack (Black)`,
+                total_bill: `Rs. ${(currentQty * pricePerUnit).toLocaleString()} (Pakistan COD)`
             };
-
             try {
                 await emailjs.send(SERVICE_ID, ADMIN_TEMPLATE_ID, params);
-                await emailjs.send(SERVICE_ID, CUSTOMER_TEMPLATE_ID, params);
-
                 document.getElementById('user-name').innerText = name;
                 document.getElementById('success').classList.remove('hide');
             } catch (err) {
-                alert("Koi masla aa gaya hai. Barae meharbani WhatsApp par order karein.");
-                console.error(err);
+                alert("Masla aaya. WhatsApp par rabta karein.");
             } finally {
-                btn.innerText = "Complete Order (COD)";
-                btn.disabled = false;
+                btn.innerText = "Confirm Order"; btn.disabled = false;
             }
         }
     </script>
 </body>
 </html>
 
-      
