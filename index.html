@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noorpur Store | HP Premium Backpack</title>
+    <title>HP Premium Backpack | Noorpur Store</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
@@ -13,254 +13,369 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#1a1a1a',
-                        accent: '#FFD700',
-                        danger: '#e63946'
+                        brand: '#0f172a', // Deep Navy/Black
+                        accent: '#eab308', // Premium Gold
+                        light: '#f8fafc'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap');
+        
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
-        .hide { display: none !important; }
-        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }
-        .image-slider { scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; display: flex; overflow-x: auto; }
-        .image-slider::-webkit-scrollbar { display: none; }
-        .image-item { scroll-snap-align: center; flex: 0 0 100%; width: 100%; }
-        .active-thumb { border-color: #1a1a1a !important; transform: scale(1.05); }
-        @keyframes slideInUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        .animate-up { animation: slideInUp 0.6s ease-out forwards; }
+        
+        .floating { animation: float 6s ease-in-out infinite; }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #0f172a; border-radius: 10px; }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-900 overflow-x-hidden">
+<body class="bg-light text-gray-800 antialiased selection:bg-accent selection:text-brand">
 
-    <!-- Top Banner -->
-    <div class="bg-primary text-white text-[10px] font-bold py-2 text-center uppercase tracking-[0.2em]">
-        <i class="fa-solid fa-truck-fast mr-2"></i> Only For Pakistan - Free Shipping Nationwide
+    <!-- Top Announcement Bar -->
+    <div class="bg-brand text-white text-xs md:text-sm font-bold py-2.5 text-center tracking-widest uppercase">
+        <i class="fa-solid fa-truck-fast text-accent mr-2"></i> Sirf Pakistan Ke Liye - 100% Free Home Delivery
     </div>
 
-    <!-- Navigation -->
-    <nav class="sticky top-0 z-50 glass px-4 py-3 shadow-sm">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <div class="bg-primary w-10 h-10 rounded-xl flex items-center justify-center text-white shadow-lg">
-                    <i class="fa-solid fa-briefcase"></i>
+    <!-- Sticky Navbar -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-brand text-white rounded-xl flex items-center justify-center text-xl shadow-lg">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-extrabold tracking-tight text-brand leading-none">NOORPUR</h1>
+                        <p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Store</p>
+                    </div>
                 </div>
-                <div>
-                    <h1 class="text-lg font-extrabold leading-none tracking-tighter uppercase">NOORPUR<br><span class="text-gray-500">STORE</span></h1>
-                </div>
+                <!-- CTA Button -->
+                <a href="#order-section" class="bg-accent hover:bg-yellow-400 text-brand font-bold py-3 px-6 rounded-full shadow-lg shadow-yellow-400/30 transition-all transform hover:scale-105 flex items-center gap-2 text-sm uppercase tracking-wider">
+                    <i class="fa-solid fa-bolt"></i> Abhi Order Karein
+                </a>
             </div>
-            <button onclick="toggleCart()" class="relative bg-white w-12 h-12 rounded-full flex items-center justify-center shadow-md border border-gray-100">
-                <i class="fa-solid fa-cart-shopping text-primary"></i>
-                <span id="cart-count" class="absolute -top-1 -right-1 bg-danger text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">0</span>
-            </button>
         </div>
     </nav>
 
-    <!-- Product Section -->
-    <main class="max-w-6xl mx-auto px-4 py-8">
-        <div class="grid lg:grid-cols-2 gap-10">
-            
-            <!-- Left: Gallery -->
-            <div class="space-y-4 animate-up">
-                <div class="relative bg-white rounded-3xl shadow-2xl overflow-hidden group">
-                    <div id="slider" class="image-slider h-[400px] md:h-[550px]">
-                        <!-- New 3 Images only -->
-                        <div class="image-item"><img src="https://i.postimg.cc/SRkWWDVz/1774700096811-2.jpg" class="w-full h-full object-contain p-4" alt="[Backpack Bag Image 1]"></div>
-                        <div class="image-item"><img src="https://i.postimg.cc/D0wT4KV8/1774700096517.jpg" class="w-full h-full object-contain p-4" alt="[Backpack Bag Image 2]"></div>
-                        <div class="image-item"><img src="https://i.postimg.cc/GtmCT109/1774700096732.jpg" class="w-full h-full object-contain p-4" alt="[Backpack Bag Image 3]"></div>
+    <!-- Hero Section -->
+    <section class="relative bg-white overflow-hidden">
+        <!-- Background Decoration -->
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-accent/10 blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-blue-500/10 blur-3xl"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-20 md:pt-20 md:pb-28 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="space-y-8 fade-in">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-100 text-red-600 font-bold text-xs uppercase tracking-widest">
+                        <span class="relative flex h-2 w-2">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                        </span>
+                        Limited Time Flash Sale
                     </div>
                     
-                    <!-- Slider Arrows -->
-                    <button onclick="slide(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 w-10 h-10 rounded-full shadow-lg flex items-center justify-center hover:bg-white transition-all"><i class="fa-solid fa-chevron-left"></i></button>
-                    <button onclick="slide(1)" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 w-10 h-10 rounded-full shadow-lg flex items-center justify-center hover:bg-white transition-all"><i class="fa-solid fa-chevron-right"></i></button>
+                    <h1 class="text-4xl md:text-6xl font-extrabold text-brand leading-tight">
+                        Aapka Professional <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-gray-500">HP Laptop Bag</span>
+                    </h1>
+                    
+                    <p class="text-lg text-gray-600 leading-relaxed max-w-lg">
+                        Office jana ho ya university, ye premium waterproof backpack aapke laptop aur zaroori saman ko hamesha mehfooz rakhega. Behtareen quality aur zabardast style.
+                    </p>
+
+                    <div class="flex items-center gap-6">
+                        <div class="flex flex-col">
+                            <span class="text-gray-400 line-through text-lg font-semibold">Rs. 2,000</span>
+                            <span class="text-4xl font-black text-brand">Rs. 1,000</span>
+                        </div>
+                        <div class="bg-green-100 text-green-700 px-4 py-2 rounded-xl font-bold text-sm">
+                            50% OFF + Free Delivery
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                        <a href="#order-section" class="w-full sm:w-auto text-center bg-brand text-white font-bold py-4 px-8 rounded-full shadow-xl hover:bg-gray-800 transition-all text-lg uppercase tracking-wide">
+                            Cash on Delivery Par Lein
+                        </a>
+                    </div>
+                    
+                    <div class="flex items-center gap-4 text-sm text-gray-500 font-semibold">
+                        <i class="fa-solid fa-shield-halved text-green-500 text-xl"></i>
+                        <span>Parcel check karne ke baad paise dein!</span>
+                    </div>
                 </div>
 
-                <!-- Thumbnails -->
-                <div class="flex gap-3 overflow-x-auto pb-2 px-1">
-                    <img onclick="scrollToImg(0)" src="https://i.postimg.cc/SRkWWDVz/1774700096811-2.jpg" class="thumb w-16 h-16 rounded-xl object-cover border-2 border-transparent cursor-pointer active-thumb">
-                    <img onclick="scrollToImg(1)" src="https://i.postimg.cc/D0wT4KV8/1774700096517.jpg" class="thumb w-16 h-16 rounded-xl object-cover border-2 border-transparent cursor-pointer">
-                    <img onclick="scrollToImg(2)" src="https://i.postimg.cc/GtmCT109/1774700096732.jpg" class="thumb w-16 h-16 rounded-xl object-cover border-2 border-transparent cursor-pointer">
-                </div>
-            </div>
-
-            <!-- Right: Info -->
-            <div class="flex flex-col animate-up" style="animation-delay: 0.2s;">
-                <div class="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 h-full flex flex-col">
-                    <div class="flex items-center gap-2 mb-4">
-                        <span class="bg-danger/10 text-danger text-[10px] font-black px-2 py-1 rounded uppercase tracking-tighter italic">Flash Sale</span>
-                        <span class="text-gray-400 text-xs">• Pakistan Only</span>
-                    </div>
-                    
-                    <h2 class="text-3xl font-extrabold tracking-tight mb-2 leading-tight uppercase">HP Laptop Backpack Black<br><span class="text-gray-400">Premium Polyester</span></h2>
-                    
-                    <div class="flex items-center gap-4 my-6 p-4 bg-gray-50 rounded-2xl border border-dashed border-gray-200">
-                        <div>
-                            <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Special Price</p>
-                            <p class="text-4xl font-black text-primary italic">Rs. 1,000</p>
-                        </div>
-                        <div class="border-l border-gray-200 pl-4">
-                            <p class="text-lg text-gray-300 line-through">Rs. 2,000</p>
-                            <p class="text-green-600 font-bold text-xs uppercase">50% Off & Free Delivery</p>
-                        </div>
-                    </div>
-
-                    <div class="space-y-4 mb-8">
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 bg-primary/5 rounded-full flex items-center justify-center shrink-0 text-primary"><i class="fa-solid fa-water"></i></div>
-                            <div>
-                                <p class="text-sm font-bold">Waterproof Fabric</p>
-                                <p class="text-xs text-gray-500">Apka saman barish se mehfooz.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-10 h-10 bg-primary/5 rounded-full flex items-center justify-center shrink-0 text-primary"><i class="fa-solid fa-feather"></i></div>
-                            <div>
-                                <p class="text-sm font-bold">Halka aur Mazboot</p>
-                                <p class="text-xs text-gray-500">Daily university aur office ke liye best.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-auto pt-6 border-t border-gray-100 space-y-4">
-                        <div class="flex items-center gap-4">
-                            <div class="flex items-center bg-gray-100 rounded-2xl p-1 w-32 border border-gray-200">
-                                <button onclick="qty(-1)" class="w-10 h-10 flex items-center justify-center"><i class="fa-solid fa-minus text-xs"></i></button>
-                                <input id="q-val" type="number" readonly value="1" class="w-full text-center bg-transparent font-bold">
-                                <button onclick="qty(1)" class="w-10 h-10 flex items-center justify-center"><i class="fa-solid fa-plus text-xs"></i></button>
-                            </div>
-                            <button onclick="buyNow()" class="flex-1 bg-primary text-white py-4 rounded-2xl font-black text-sm uppercase tracking-widest shadow-xl hover:scale-[1.02] active:scale-95 transition-all">
-                                <i class="fa-solid fa-bolt mr-2"></i> Order Now
-                            </button>
-                        </div>
-                        <p class="text-center text-[10px] font-bold text-gray-400 uppercase tracking-tighter italic">Cash on Delivery available all over Pakistan</p>
-                    </div>
+                <!-- Main Image -->
+                <div class="relative fade-in">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-gray-100 to-white rounded-full scale-90 -z-10 shadow-2xl"></div>
+                    <img src="https://i.postimg.cc/SRkWWDVz/1774700096811-2.jpg" alt="" class="w-full h-auto object-contain floating drop-shadow-2xl max-h-[600px]">
                 </div>
             </div>
         </div>
-    </main>
+    </section>
 
-    <!-- Checkout Slide-over -->
-    <div id="cart-modal" class="fixed inset-0 z-[100] hide">
-        <div class="absolute inset-0 bg-black/40 backdrop-blur-sm" onclick="toggleCart()"></div>
-        <div class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl flex flex-col animate-fade">
-            <div class="p-6 border-b flex justify-between items-center">
-                <h3 class="font-extrabold text-xl tracking-tighter uppercase">ORDER DETAILS</h3>
-                <button onclick="toggleCart()" class="text-2xl">&times;</button>
+    <!-- Features Section -->
+    <section class="py-20 bg-brand text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Khasoosiyat Jo Isey Behtareen Banati Hain</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Har detail ko aapki aasaani aur laptop ki hifazat ke liye design kiya gaya hai.</p>
             </div>
-            <div class="flex-1 overflow-y-auto p-6 space-y-6">
-                <div class="flex gap-4 bg-gray-50 p-4 rounded-3xl border border-gray-100">
-                    <img src="https://i.postimg.cc/SRkWWDVz/1774700096811-2.jpg" class="w-20 h-20 rounded-2xl object-cover bg-white">
-                    <div>
-                        <h4 class="font-bold text-sm">HP Laptop Backpack (Black)</h4>
-                        <p class="text-primary font-black mt-1" id="p-price">Rs. 1,000</p>
-                        <p class="text-[10px] text-gray-400 uppercase font-bold" id="p-qty-label">Qty: 1</p>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white/10 p-8 rounded-3xl backdrop-blur-sm border border-white/10 hover:bg-white/20 transition-all fade-in">
+                    <div class="w-14 h-14 bg-accent text-brand rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-lg">
+                        <i class="fa-solid fa-droplet"></i>
                     </div>
+                    <h3 class="text-xl font-bold mb-3">Waterproof Fabric</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">Achanak barish ho jaye? Fikar na karein. Iska premium material aapke andar rakhe saman ko paani se bachata hai.</p>
                 </div>
-                <form onsubmit="placeOrder(event)" class="space-y-4">
-                    <input id="name" type="text" placeholder="Apka Naam" required class="w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-4 outline-none focus:border-primary">
-                    <input id="phone" type="tel" placeholder="WhatsApp Number (03XXXXXXXXX)" required class="w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-4 outline-none focus:border-primary">
-                    <textarea id="address" placeholder="Mukammal Delivery Address" required rows="3" class="w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-4 outline-none focus:border-primary"></textarea>
-                    
-                    <div class="bg-gray-900 text-white p-6 rounded-3xl mt-6">
-                        <div class="flex justify-between text-xs opacity-60 mb-2"><span>Subtotal</span><span id="bill-sub">Rs. 1,000</span></div>
-                        <div class="flex justify-between text-xs opacity-60 mb-4"><span>Shipping (Pakistan Only)</span><span class="text-green-400">FREE</span></div>
-                        <div class="flex justify-between font-black text-xl pt-4 border-t border-white/10 italic">
-                            <span>TOTAL</span><span id="bill-total" class="text-accent tracking-widest">Rs. 1,000</span>
+
+                <!-- Feature 2 -->
+                <div class="bg-white/10 p-8 rounded-3xl backdrop-blur-sm border border-white/10 hover:bg-white/20 transition-all fade-in" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 bg-accent text-brand rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-lg">
+                        <i class="fa-solid fa-laptop"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Safe Laptop Compartment</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">Andar naram foam ki padding di gayi hai jo aapke laptop ko girne ya jhatke lagne se mehfooz rakhti hai.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-white/10 p-8 rounded-3xl backdrop-blur-sm border border-white/10 hover:bg-white/20 transition-all fade-in" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 bg-accent text-brand rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-lg">
+                        <i class="fa-solid fa-feather"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Lightweight & Aaramdeh</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">Kandhon (shoulders) par bojh mehsoos nahi hoga. Pura din pahan kar asani se safar kar sakte hain.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Gallery -->
+    <section class="py-20 bg-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-brand mb-4">Original Tasweerein Dekhein</h2>
+                <p class="text-gray-500">Jo aap dekhenge, wohi aapko milega. No fake products.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="rounded-3xl overflow-hidden shadow-2xl bg-white p-4 fade-in">
+                    <img src="https://i.postimg.cc/D0wT4KV8/1774700096517.jpg" alt="" class="w-full h-auto object-contain hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="rounded-3xl overflow-hidden shadow-2xl bg-white p-4 fade-in" style="transition-delay: 100ms;">
+                    <img src="https://i.postimg.cc/GtmCT109/1774700096732.jpg" alt="" class="w-full h-auto object-contain hover:scale-105 transition-transform duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Section (Checkout Form) -->
+    <section id="order-section" class="py-20 bg-white relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-[2.5rem] shadow-2xl overflow-hidden border border-gray-100 p-8 md:p-12">
+                
+                <div class="text-center mb-10">
+                    <div class="inline-block bg-accent text-brand font-black px-4 py-1 rounded-full text-sm uppercase tracking-widest mb-4 shadow-md">Sirf 1 Minute Mein Order Karein</div>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-brand mb-4">Apna Order Book Karein</h2>
+                    <p class="text-gray-500 font-medium">Paise tab dijiye ga jab parcel aapke hath mein ho (Cash on Delivery).</p>
+                </div>
+
+                <div class="bg-gray-50 rounded-2xl p-6 mb-8 border border-gray-200 flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <img src="https://i.postimg.cc/SRkWWDVz/1774700096811-2.jpg" class="w-16 h-16 rounded-xl bg-white shadow-sm object-cover">
+                        <div>
+                            <h4 class="font-bold text-brand">HP Premium Backpack</h4>
+                            <p class="text-sm text-gray-500">Black Color</p>
                         </div>
                     </div>
-                    <button type="submit" id="submit-btn" class="w-full bg-primary text-white py-5 rounded-3xl font-black uppercase tracking-widest hover:scale-[1.02] active:scale-95 transition-all">Confirm Order</button>
+                    <div class="text-right">
+                        <p class="text-2xl font-black text-brand">Rs. 1,000</p>
+                        <p class="text-xs text-green-600 font-bold uppercase">Free Delivery</p>
+                    </div>
+                </div>
+
+                <form id="order-form" onsubmit="submitOrder(event)" class="space-y-6">
+                    <!-- Form Fields -->
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-brand ml-1">Aapka Poora Naam <span class="text-red-500">*</span></label>
+                            <div class="relative">
+                                <i class="fa-solid fa-user absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                                <input type="text" id="cust_name" required placeholder="Ali Raza" class="w-full bg-white border border-gray-300 rounded-xl py-4 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition-all shadow-sm">
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-brand ml-1">WhatsApp Number <span class="text-red-500">*</span></label>
+                            <div class="relative">
+                                <i class="fa-brands fa-whatsapp absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg"></i>
+                                <input type="tel" id="cust_phone" required placeholder="03XX-XXXXXXX" class="w-full bg-white border border-gray-300 rounded-xl py-4 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition-all shadow-sm">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="text-sm font-bold text-brand ml-1">Mukammal Delivery Address <span class="text-red-500">*</span></label>
+                        <div class="relative">
+                            <i class="fa-solid fa-location-dot absolute left-4 top-6 text-gray-400"></i>
+                            <textarea id="cust_address" required rows="3" placeholder="Ghar ka number, Gali, Mohalla, aur Shehar ka naam" class="w-full bg-white border border-gray-300 rounded-xl py-4 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition-all shadow-sm"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Quantity -->
+                    <div class="flex items-center justify-between bg-white border border-gray-200 p-4 rounded-xl shadow-sm">
+                        <span class="font-bold text-brand">Quantity (Kitne bags chahiye?)</span>
+                        <div class="flex items-center bg-gray-100 rounded-lg p-1">
+                            <button type="button" onclick="changeQty(-1)" class="w-10 h-10 flex items-center justify-center bg-white rounded shadow-sm text-brand hover:bg-gray-50"><i class="fa-solid fa-minus"></i></button>
+                            <input type="number" id="cust_qty" readonly value="1" class="w-12 text-center bg-transparent font-black text-brand text-lg outline-none">
+                            <button type="button" onclick="changeQty(1)" class="w-10 h-10 flex items-center justify-center bg-white rounded shadow-sm text-brand hover:bg-gray-50"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Total Bill -->
+                    <div class="border-t border-gray-200 pt-6 mt-6 flex justify-between items-center">
+                        <span class="text-gray-500 font-bold uppercase tracking-widest text-sm">Total Bill:</span>
+                        <span id="total_display" class="text-3xl font-black text-brand">Rs. 1,000</span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="submit_btn" class="w-full bg-brand text-white text-xl font-black py-5 rounded-2xl shadow-xl hover:bg-gray-800 transform hover:-translate-y-1 transition-all flex justify-center items-center gap-3">
+                        Mera Order Confirm Karein <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    
+                    <p class="text-center text-xs text-gray-400 font-semibold mt-4">
+                        <i class="fa-solid fa-lock text-green-500 mr-1"></i> Aapki maloomat hamare paas mehfooz hai.
+                    </p>
                 </form>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand text-white py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h3 class="text-2xl font-black tracking-tight mb-4">NOORPUR STORE</h3>
+            <p class="text-gray-400 text-sm mb-6">Pakistan ka bharosemand online store. Behtareen quality, munasib qeemat.</p>
+            <div class="flex justify-center gap-6 text-2xl text-gray-400 mb-8">
+                <a href="#" class="hover:text-accent transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#" class="hover:text-accent transition-colors"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="hover:text-accent transition-colors"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <p class="text-xs text-gray-600">&copy; 2026 Noorpur Store. All Rights Reserved. Delivery strictly within Pakistan.</p>
+        </div>
+    </footer>
 
     <!-- Success Modal -->
-    <div id="success" class="fixed inset-0 z-[200] hide flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-        <div class="bg-white p-10 rounded-[2.5rem] max-w-sm w-full text-center animate-up shadow-2xl">
-            <div class="w-24 h-24 bg-green-50 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                <i class="fa-solid fa-check-double text-5xl"></i>
+    <div id="success-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-brand/90 backdrop-blur-sm">
+        <div class="bg-white p-10 rounded-[2rem] max-w-md w-full text-center shadow-2xl transform scale-95 transition-transform duration-300" id="success-card">
+            <div class="w-20 h-20 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fa-solid fa-check text-4xl"></i>
             </div>
-            <h3 class="text-2xl font-black mb-2 uppercase tracking-tighter italic">ORDER PLACED!</h3>
-            <p class="text-gray-500 text-sm mb-10">Shukriya <span id="user-name" class="font-bold text-primary">Customer</span>! Aapka order mil gaya hai. Jald rabta karenge.</p>
-            <button onclick="location.reload()" class="w-full bg-primary text-white py-4 rounded-2xl font-bold uppercase">Done</button>
+            <h3 class="text-3xl font-black text-brand mb-2">Shukriya!</h3>
+            <p class="text-gray-600 mb-8 font-medium">Aapka order kamyabi se book ho gaya hai. Humara numainda (representative) jald aapko WhatsApp par confirm karega.</p>
+            <button onclick="location.reload()" class="w-full bg-accent text-brand font-bold py-4 rounded-xl hover:bg-yellow-400 transition-colors uppercase tracking-widest">
+                Wapas Jayen
+            </button>
         </div>
     </div>
 
+    <!-- Scroll Animation & Form Logic Script -->
     <script>
+        // Animations setup
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+
+        // Form Logic
         const EMAILJS_KEY = "kzmM0KWO1n4plnqJm"; 
         const SERVICE_ID = "service_iw3bi57"; 
         const ADMIN_TEMPLATE_ID = "template_xxwk98a"; 
         
         emailjs.init(EMAILJS_KEY);
 
-        let currentQty = 1;
-        const pricePerUnit = 1000;
-        const slider = document.getElementById('slider');
+        let qty = 1;
+        const price = 1000;
 
-        function slide(dir) {
-            slider.scrollBy({ left: dir * slider.clientWidth, behavior: 'smooth' });
+        function changeQty(n) {
+            qty = Math.max(1, qty + n);
+            document.getElementById('cust_qty').value = qty;
+            document.getElementById('total_display').innerText = `Rs. ${(qty * price).toLocaleString()}`;
         }
 
-        slider.addEventListener('scroll', () => {
-            const index = Math.round(slider.scrollLeft / slider.clientWidth);
-            document.querySelectorAll('.thumb').forEach((t, i) => {
-                i === index ? t.classList.add('active-thumb') : t.classList.remove('active-thumb');
-            });
-        });
-
-        function scrollToImg(index) {
-            slider.scrollTo({ left: index * slider.clientWidth, behavior: 'smooth' });
-        }
-
-        function qty(n) {
-            currentQty = Math.max(1, currentQty + n);
-            document.getElementById('q-val').value = currentQty;
-        }
-
-        function toggleCart() {
-            document.getElementById('cart-modal').classList.toggle('hide');
-            updateBill();
-        }
-
-        function buyNow() {
-            document.getElementById('cart-count').innerText = currentQty;
-            toggleCart();
-        }
-
-        function updateBill() {
-            const sub = currentQty * pricePerUnit;
-            document.getElementById('p-qty-label').innerText = `Qty: ${currentQty}`;
-            document.getElementById('bill-sub').innerText = `Rs. ${sub.toLocaleString()}`;
-            document.getElementById('bill-total').innerText = `Rs. ${sub.toLocaleString()}`;
-        }
-
-        async function placeOrder(e) {
+        async function submitOrder(e) {
             e.preventDefault();
-            const btn = document.getElementById('submit-btn');
-            btn.innerText = "Processing..."; btn.disabled = true;
-            const name = document.getElementById('name').value;
+            const btn = document.getElementById('submit_btn');
+            const originalText = btn.innerHTML;
+            
+            // Loading state
+            btn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> Wait Karein...`;
+            btn.disabled = true;
+            btn.classList.add('opacity-70');
+
             const params = {
-                to_name: name,
-                cust_email: "no-email@store.pk",
-                cust_phone: document.getElementById('phone').value,
-                cust_address: document.getElementById('address').value,
-                order_items: `${currentQty}x HP Laptop Backpack (Black)`,
-                total_bill: `Rs. ${(currentQty * pricePerUnit).toLocaleString()} (Pakistan COD)`
+                to_name: document.getElementById('cust_name').value,
+                cust_phone: document.getElementById('cust_phone').value,
+                cust_address: document.getElementById('cust_address').value,
+                order_items: `${qty}x HP Premium Backpack`,
+                total_bill: `Rs. ${(qty * price).toLocaleString()} (Cash on Delivery)`
             };
+
             try {
                 await emailjs.send(SERVICE_ID, ADMIN_TEMPLATE_ID, params);
-                document.getElementById('user-name').innerText = name;
-                document.getElementById('success').classList.remove('hide');
-            } catch (err) {
-                alert("Masla aaya. WhatsApp par rabta karein.");
-            } finally {
-                btn.innerText = "Confirm Order"; btn.disabled = false;
+                
+                // Show Success Modal
+                const modal = document.getElementById('success-modal');
+                const card = document.getElementById('success-card');
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                setTimeout(() => {
+                    card.classList.remove('scale-95');
+                    card.classList.add('scale-100');
+                }, 10);
+
+            } catch (error) {
+                alert("Internet ka masla hai. Barae meharbani dubara koshish karein ya seedha WhatsApp par rabta karein.");
+                console.error("EmailJS Error:", error);
+                
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                btn.classList.remove('opacity-70');
             }
         }
     </script>
 </body>
 </html>
+
 
